@@ -1,0 +1,21 @@
+package mirimstore;
+class Menu{
+	public void readingData(String fname) throws IOEXception{
+		try{
+			FileReader fr = new FileReader(new File(fname));
+			BufferdReader br = new BufferedReader(fr);
+			String csvStr = "";
+			String tmpStr="";
+			do{
+				
+			}
+		}
+	}
+}
+public class Connect {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

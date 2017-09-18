@@ -1,0 +1,35 @@
+package mirimstore;
+
+private Connection conn;
+private Statement stat;
+private ResultSet rs;
+ 
+@Test
+public final void testMySql() {
+    String dbUrl = "jdbc:mysql://xxx.xxx.co.kr";
+    String id = "sss";
+    String pwd = "ddd";
+     
+    try {
+        Connection con = null;
+        con = DriverManager.getConnection(dbUrl, id, pwd);
+        stat = con.createStatement();
+         
+        // 현재 존재하는 DB 종류를 알아오는 쿼리
+        rs = stat.executeQuery("SHOW DATABASES");
+        if (stat.execute("SHOW DATABASES")) {
+            rs = stat.getResultSet();
+        }
+         
+        // RecordSet 에 담은 데이타를 출력한다.
+        while (rs.next()) {
+            String str = rs.getNString(1);
+            System.out.println(str);
+        }
+ 
+    } catch (SQLException sqex) {
+        System.out.println("SQLException: " + sqex.getMessage());
+        System.out.println("SQLState: " + sqex.getSQLState());
+    }
+ 
+}

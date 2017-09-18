@@ -1,0 +1,52 @@
+package mirimstore;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+class Menu{
+	public void readingData(String fname) throws IOException{
+		try{
+			FileReader fr = new FileReader(new File(fname));
+			BufferedReader br = new BufferedReader(fr);
+			String str1 = "";
+			String str2 = "";
+			do{
+				str2 = br.readLine();
+				if(str2 != null){
+					str1 += str2+"\t";
+				}
+			}while(str2 != null);
+			StringTokenizer parse = new StringTokenizer(str1+"\t");
+			int length = parse.countTokens();
+			String number[] = new String[length];
+			String menu[] = new String[length];
+			int price[] = new int[length];
+			for(int j=0; j<length; j++){
+				number[j] =parse.nextToken();
+				menu[j] =parse.nextToken();
+				price[j] =Integer.valueOf(parse.nextToken()).intValue();
+			}
+			for(int i=0; i<length; i++){
+				System.out.println(number[i]+"  "+menu[i]+"   "+price[i]);
+			}
+		}catch(FileNotFoundException e){
+			System.out.println("잘못된 파일 이름 입니다.");
+		}
+	}
+}
+public class Connect {
+
+	public static void main(String[] args) {
+		Menu m = new Menu();
+		try{
+			m.readingData("menu.txt");
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+
+}
